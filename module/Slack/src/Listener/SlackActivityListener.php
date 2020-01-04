@@ -133,7 +133,7 @@ class SlackActivityListener extends AbstractEventListener
     {
 		if (isset($config['slack']['slack_ids'][$username]))
 		{
-			return '<@!' . $config['slack']['slack_ids'][$username] . '>';
+			return '<@' . $config['slack']['slack_ids'][$username] . '>';
 		}
 		else
 		{
@@ -148,7 +148,7 @@ class SlackActivityListener extends AbstractEventListener
 
         try {
             $json = array(
-                'content' => $msg
+                'payload' => $msg
             );
 
             $request = new Request();

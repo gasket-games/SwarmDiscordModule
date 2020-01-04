@@ -30,7 +30,7 @@ return [
 		'swarm_host' => 'your_host_ip',
 		'slack_ids' => [
 			'swarm_id' => 'slack_id',
-		],
-		'slack_webhook' => 'https://slackapp.com/api/webhooks/webhook_id/webhook_token',
+        ],
+		'slack_webhook' => 'https://hooks.slack.com/services/___YOUR_TOKEN_HERE___',
     ]
 ];
