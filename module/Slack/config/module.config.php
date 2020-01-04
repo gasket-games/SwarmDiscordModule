@@ -31,6 +31,9 @@ return [
 		'slack_ids' => [
 			'swarm_id' => 'slack_id',
         ],
+        'channel' => 'destination_slack_channel',
+        'username' => 'slack_poster_username',
+        'icon_emoji' => 'slack_poster_icon',
 		'slack_webhook' => 'https://hooks.slack.com/services/___YOUR_TOKEN_HERE___',
     ]
 ];

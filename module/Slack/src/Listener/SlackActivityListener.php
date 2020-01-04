@@ -112,7 +112,7 @@ class SlackActivityListener extends AbstractEventListener
 		else if ($reviewId == 0)
 		{
 			//notify everybody
-			$notify = '@everyone ';
+			$notify = '@everyone '; // TODO: This won't work in slack, do something different or remove
 		}
 		
 		$eventString = "Hey " . $notify . "! " . $eventString;
@@ -147,8 +147,15 @@ class SlackActivityListener extends AbstractEventListener
         $config = $this->services->get('config');
 
         try {
+			$payload = array(
+				'channel' => $config['slack']['channel'],
+				'username' => $config['slack']['username'],
+				'text' => $msg,
+				'icon_emoji' => $config['slack']['icon_emoji']
+			);
+
             $json = array(
-                'payload' => $msg
+                'payload' => $payload
             );
 
             $request = new Request();
