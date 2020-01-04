@@ -1,3 +1,6 @@
+# SlackDiscordModule
+A Helix Swarm module to send notifications to a slack channel when reviews are created or modified, forked from SwarmDiscordModule (thank you to https://github.com/developpeur2000!)
+
 # SwarmDiscordModule
 An Helix Swarm module to send notifications to a discord channel when reviews are created or modified
 
