@@ -19,7 +19,7 @@ return [
         Events\Listener\ListenerFactory::ALL => [
             Slack\Listener\SlackActivityListener::class => [
                 [
-                    Events\Listener\ListenerFactory::PRIORITY => Events\Listener\ListenerFactory::HANDLE_MAIL_PRIORITY + 1,
+                    Events\Listener\ListenerFactory::PRIORITY => -110,
                     Events\Listener\ListenerFactory::CALLBACK => 'handleEvent',
                     Events\Listener\ListenerFactory::MANAGER_CONTEXT => 'queue'
                 ]

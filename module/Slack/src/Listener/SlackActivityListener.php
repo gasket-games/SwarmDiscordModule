@@ -32,15 +32,7 @@ class SlackActivityListener extends AbstractEventListener
         $host = $this->services->get('ViewHelperManager')->get('qualifiedUrl');
 
         $logger->info("Slack: event / id => " . $event->getName() . " / " . $event->getParam('id'));
-		
-		// taken from mail module, this doesn't seem to work
-        $data  = (array) $event->getParam('data') + array('quiet' => null);
-        $quiet = $event->getParam('quiet', $data['quiet']);
-        if ($quiet === true) {
-            $logger->info("Slack: event is silent(notifications are being batched), returning.");
-            return;
-        }
-		
+				
 		// it's better not to tag user involved in activity, only review author
 		//$user = $this->tagUser($config, $activity->get('user'));
 		$user = $activity->get('user');
@@ -90,7 +82,7 @@ class SlackActivityListener extends AbstractEventListener
 				} catch (\Exception $e) {
 					$logger->err("Slack: error when fetching comment : " . $e->getMessage());
 				}
-				//don't treat single comments, waith for the comment.batch
+				//don't treat single comments, wait for the comment.batch - why put code here then.. :/
 				return;
 				break;
 			default:
@@ -112,7 +104,7 @@ class SlackActivityListener extends AbstractEventListener
 		else if ($reviewId == 0)
 		{
 			//notify everybody
-			$notify = '@everyone '; // TODO: This won't work in slack, do something different or remove
+			$notify = '@everyone '; // TODO: This should be the list of reviewers
 		}
 		
 		$eventString = "Hey " . $notify . "! " . $eventString;
@@ -155,7 +147,7 @@ class SlackActivityListener extends AbstractEventListener
 			);
 
             $json = array(
-                'payload' => $payload
+                'payload' => json_encode($payload)
             );
 
             $request = new Request();
